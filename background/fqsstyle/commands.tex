@@ -1,0 +1,44 @@
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand\mathfamilydefault{}
+\newcommand{\colorbf}[1]{{\color{umGreen}\textbf{#1}}}
+
+\newdateformat{dmydate}{%
+  \twodigit{\THEDAY}~\monthname[\THEMONTH] \THEYEAR%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% eqauation
+%%
+\DeclareMathAlphabet{\mathbfsf}{\encodingdefault}{\sfdefault}{bx}{n}
+% \renewcommand{\vec}[1]{\mathbfsf{#1}}
+\newcommand{\vect}[1]{\vec{\mathbf{#1}}}
+\newcommand{\brak}[1]{\langle{#1}\rangle}
+\newcommand{\rbrak}[1]{\left({#1}\right)}
+\newcommand{\sbrak}[1]{\left[{#1}\right]}
+\newcommand{\cbrak}[1]{\left\{{#1}\right\}}
+\newcommand{\abrak}[1]{\left|{#1}\right|}
+\newcommand{\intInf}{\int_{-\infty}^{+\infty}}
+\newcommand{\intinf}{\int_{-\infty}^{\infty}}
+\newcommand{\conj}{\mathlarger{*}}%
+\newcommand{\Psiconj}{\Psi^\conj}
+\newcommand{\Psixt}{\Psi\rbrak{x,t}}
+\newcommand{\hi}{\hat{i}}
+\newcommand{\hj}{\hat{j}}
+\newcommand{\hk}{\hat{k}}
+\newcommand{\hx}{\hat{i}}
+\newcommand{\hy}{\hat{j}}
+\newcommand{\hz}{\hat{k}}
+\newcommand{\vB}{\vect{B}}
+\newcommand{\vE}{\vect{E}}
+\newcommand{\vD}{\vect{D}}
+\newcommand{\vH}{\vect{H}}
+\newcommand{\curl}[1]{\vect{\nabla}\times\vect{#1}}
+\newcommand{\divg}[1]{\vect{\nabla}\cdot\vect{#1}}
+
+% quote
+\newcommand{\q}[1]{``#1''}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:

@@ -1,0 +1,174 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+\PassOptionsToPackage{table,xcdraw}{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage{media9}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{positioning, fit, arrows.meta, shapes}
+\usepackage{transparent}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[table,xcdraw]{xcolor}
+
+\newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$}
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage{multirow}      % For merging rows in tables
+\usepackage{colortbl}      % For coloring cells
+
+\usepackage{fqsstyle/beamerthemefqs}
+\usepackage{fqsstyle/beamercolorthemefqs}
+
+\usepackage{comment}
+
+\input{fqsstyle/init.tex}
+\newcommand{\strong}[1]{\textcolor{umBlueLighter}{#1}}
+\newcommand{\quotes}[1]{`#1'}
+
+\mode<presentation>{%
+    \usetheme{fqs}
+    \usecolortheme{fqs}
+}
+
+\title[KANs]{Kolmogorov Arnold Networks}
+\subtitle{Theoretical background,\\ current approaches,\\ potential next steps}
+
+\author[T Boura \& S Konstantopoulos]{Tatiana Boura \\
+  Stasinos Konstantopoulos}
+
+\institute[]{
+  \includegraphics[height=4em]{fqsstyle/assets/ncsrd}
+  \includegraphics[height=4em]{fqsstyle/assets/deg}}
+
+\date{28 November 2024}
+
+\setbeamersize{text margin left=.05\pdfpagewidth,text margin right=.05\pdfpagewidth}
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  CUSTOM TITLE PAGE: with featured image
+%%
+{
+  \setbeamertemplate{headline}{}
+  \begin{frame}
+      %%%%%%%%%%%%%%%%%%%%%%
+      %% Featured Image (comment or delete if not used)
+      %%
+      \begin{tikzpicture}[overlay, remember picture]
+          \node[left=1.0cm] at (current page.1){%
+              \includegraphics[width=6.5cm]{contents/images/KAN_arch_cropped}
+          };
+      \end{tikzpicture}
+      % the title page itself
+      \titlepage%
+  \end{frame}
+}
+
+
+\section*{Introduction}
+% No section page needed, I think
+
+\begin{frame}{Outline}
+  \begin{itemize}
+    \setlength{\itemsep}{12pt}
+  \item \strong{Part 1, Kolmogorov-Arnold Representation Theorem:}
+    Historical context; proof sketch; thoughts on the theorem's impact
+  \item \strong{Part 2, Kolmogorov Arnold Networks:}
+    Definition; training algorithm
+  \item \strong{Part 3, Why Kolmogorov Arnold Networks?}
+    Motivation; expected applications
+  \item \strong{Part 4, Life after KAN:}
+    Extensions; DEG current work and plans
+  \end{itemize}
+\end{frame}
+
+\setcounter{section}{0}
+
+\section{Kolmogorov-Arnold Representation Theorem}
+{
+  \setbeamertemplate{headline}{}
+  \begin{frame}
+    \sectionpage%
+    %\transparent{0.8} %
+    %\begin{tikzpicture}[overlay,remember picture]
+    %    \node[left=2cm] at (current page.2){%
+    %        \includegraphics[width=4.5cm]{contents/images/kplusa}
+    %    };
+    %\end{tikzpicture}
+  \end{frame}
+}
+
+\input{contents/kat_formulation.tex}
+\input{contents/kat_proof.tex}
+
+
+\section{Kolmogorov-Arnold Networks}
+{
+  \setbeamertemplate{headline}{}
+  \begin{frame}
+    \sectionpage%
+  \end{frame}
+}
+
+\input{contents/kan_mlp.tex}
+\input{contents/kan_architecture.tex}
+
+\section{Why Kolmogorov-Arnold Networks?}
+{
+  \setbeamertemplate{headline}{}
+  \begin{frame}
+    \sectionpage%
+  \end{frame}
+}
+
+\input{contents/kan_useful_properties.tex}
+
+\section{Life after KAN}
+{
+  \setbeamertemplate{headline}{}
+  \begin{frame}
+    \sectionpage%
+  \end{frame}
+}
+
+\input{contents/kan_extensions.tex}
+\input{contents/deg_path.tex}
+
+
+\section{The End}
+% No section page needed, I think
+
+\begin{frame}
+
+\begin{center}
+  \huge \colorbf{Thank you!} 
+  Questions?
+\end{center}
+
+\vfill
+
+\begin{columns}
+\begin{column}{6cm}
+\includegraphics[width=5cm]{fqsstyle/assets/deg} \\
+\end{column}
+\begin{column}{6cm}
+Code, bibliography, slides:\\
+\url{https://github.com/data-eng/kan}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+
+\end{document}
+

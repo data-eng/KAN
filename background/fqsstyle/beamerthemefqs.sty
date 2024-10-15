@@ -1,0 +1,183 @@
+\mode<presentation>
+
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+% remove navigation symbols so we can do custom arrangement later
+\setbeamertemplate{navigation symbols}{}
+
+
+%% =====================================
+%% Required Packages
+%%
+\RequirePackage{setspace}
+\RequirePackage{etoolbox}
+
+
+%% =====================================
+%% Title Page
+%%
+\setbeamertemplate{title page}{%
+    %\begin{tikzpicture}[overlay, remember picture]
+    %    \node[left=0.2cm] at (current page.25){%
+    %        \includegraphics[width=1.0cm]{fqsstyle/assets/ncsr.jpg}
+    %    };
+    %\end{tikzpicture}
+    \begin{tikzpicture}
+        % if you want to set the box to some custom place instead of allign it evenly you need to use boundingbox
+        % \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+        \node[text width=0.7*\the\paperwidth,anchor=south west,inner sep=0pt,fill=white,opacity=0.60,text opacity=1] at (0,0.4*\the\paperheight) {%
+            \begin{beamercolorbox}[wd=\textwidth,sep=20pt, leftskip=0mm]{title box}%
+                {\setstretch{1.15}\usebeamerfont{title}\textcolor{umBlue}{\inserttitle}\par }\vspace{0.5em}
+
+                {\usebeamerfont{subtitle}\textcolor{umBlack}{\insertsubtitle}}\vspace{1.2em}
+
+                {\usebeamerfont{author}\insertauthor}\vspace{1.0em}
+
+                {\usebeamerfont{institute}\insertinstitute}\vspace{1.0em}
+
+                {\usebeamerfont{date}\insertdate}
+                \vfill
+            \end{beamercolorbox}
+        };
+    \end{tikzpicture}
+}
+
+%%% Renew the maketitle
+\newbool{titlesplit}
+\newcommand{\@TitleBackground}{}
+\newcommand{\titlebackground}{\@ifstar{\SplitBackground}{\FullBackground}}
+\newcommand{\FullBackground}[1]{\renewcommand{\@TitleBackground}{#1}}
+\newcommand{\SplitBackground}[1]{%
+    \booltrue{titlesplit}%
+    \renewcommand{\@TitleBackground}{#1}%
+}
+
+
+%%% Frametitle
+\setbeamertemplate{frametitle}
+{%
+    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+    \@tempdima=\textwidth%
+    \advance\@tempdima by\Gm@lmargin%
+    \advance\@tempdima by\Gm@rmargin%
+    \begin{beamercolorbox}[sep=0.6cm,left,wd=\the\@tempdima]{frametitle}
+        \usebeamerfont{frametitle}%
+        \vbox{}\vskip-1ex%
+        \if@tempswa\else\csname beamer@fteleft\endcsname\fi%
+        \hspace{0.42cm}\strut\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+              {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+          \fi
+        }%
+        \vskip-1ex%
+        \if@tempswa\else\vskip-.3cm\fi
+    \end{beamercolorbox}%
+}
+
+
+%% =====================================
+%% Header
+%%
+\defbeamertemplate*{headline}{infolines theme}
+{%
+  \leavevmode%
+  \begin{tikzpicture}
+      \fill[color=gray] (1.0*\the\paperwidth,0.644*\the\paperheight) rectangle (0.0*\the\paperwidth,0.656*\the\paperheight);
+  \end{tikzpicture}
+  \hbox{%
+    \begin{beamercolorbox}[wd=\beamer@leftmargin,ht=5mm,dp=1.5ex,right]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.435\linewidth,ht=5mm,dp=1.5ex,left]{section in header}%
+        \rule{\linewidth}{0.4pt}
+        \textcolor{umBlue}{\textbf{\insertshorttitle}}{~~|~~\insertsection}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.03\textwidth,ht=5mm,dp=1.5ex,right]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.455\linewidth,ht=5mm,dp=1.5ex,left]{author, institue, and data in header}%
+        \rule{\linewidth}{0.4pt}
+        \insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}~~\textit{\insertshortdate}
+    \end{beamercolorbox}%
+  }%
+}
+
+
+%% =====================================
+%% Footer
+%%
+\defbeamertemplate*{footline}{infolines theme}
+{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.85\paperwidth,ht=3.5mm,dp=1.0ex,right]{first box in footer}%
+        \hbox{%
+            \hbox{\insertslidenavigationsymbol}
+            \hbox{\insertframenavigationsymbol}
+            \hbox{\insertsectionnavigationsymbol}
+            \hbox{\insertsubsectionnavigationsymbol}
+            \hbox{\insertdocnavigationsymbol}
+            % \hbox{\insertbackfindforwardnavigationsymbol}%
+            \hspace{0.53\paperwidth}
+        }%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.02\paperwidth,ht=3.5mm,dp=1.0ex,right]{second box in footer}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.13\paperwidth,ht=3.5mm,dp=1.0ex,left]{third box in footer}%
+        \centering
+        \raisebox{0.5mm}{%
+          \tiny\insertpagenumber%
+        }
+    \end{beamercolorbox}
+  }%
+  \vskip0pt%
+}
+
+
+%% =====================================
+%% Section page
+%%
+\setbeamertemplate{section page}{% We add a green box with tikzpicture and put section text inside.
+    \begin{tikzpicture}
+        \node[text width=0.75*\the\paperwidth,anchor=south west,inner sep=20pt, fill=umGreenLighter] at (0,0.4*\the\paperheight){%
+            \parbox[][0.357\paperheight][c]{0.7\paperwidth}{\usebeamerfont{section}\textcolor{white}{\large\MakeUppercase Part \thesection.\ \textbf{\insertsection}}}
+        };
+    \end{tikzpicture}
+}
+
+
+%% =====================================
+%% itemize and enumerate bullets
+%%
+\setbeamertemplate{itemize item}{\tikz{\node[rectangle,
+        draw=umOrange,
+        fill=umOrange,
+        minimum height=6.5px,
+        minimum width=12px] {};}}
+\setbeamertemplate{itemize subitem}{\tikz{\node[rectangle,
+        draw=umBlueLighter,
+        fill=umBlueLighter,
+        minimum height=6.5px,
+        minimum width=12px] {};}}
+\setbeamertemplate{itemize subsubitem}{\scalebox{1.6}{\textcolor{umBlackLitleLighter}{$\blacktriangleright$}}}
+
+\setbeamertemplate{enumerate items}[square]
+
+% item indentation
+\setlength{\leftmargini}{0.5cm}
+\setlength{\leftmarginii}{0.5cm}
+
+
+%% =====================================
+%% Fonts
+%%
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\scriptsize}
+\setbeamerfont{subtitle}{series=\bfseries,size=\small}
+\setbeamerfont{title}{series=\bfseries, size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{framesubtitle}{series=\mdseries}
+\setbeamerfont{footline}{size=\scriptsize}
+
+\mode<all>

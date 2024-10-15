@@ -1,0 +1,38 @@
+
+\begin{frame}{Neural Networks are Function Approximators}
+
+\begin{itemize}
+    \item MLPs are inspired by the \strong{Universal Approximation Theorem} \vspace{0.5em}
+    \begin{itemize}
+        \item Leshno et al. (1993):
+        \textit{A standard multilayer FNN can approximate any continuous function to any degree of accuracy iff
+        the network’s activation functions are not polynomial}
+    \end{itemize}
+    \vspace{1em}
+    \item Can we be inspired by \strong{KART}?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Neural Networks are Function Approximators}
+
+\begin{itemize}
+    \item Can we be inspired by \strong{KART}?
+    \begin{itemize}
+        \item KART claims that learning a high-dimensional function reduces to learning a polynomial number of 1D functions then, why \textbf{inspired}? \dots
+        \item \dots these 1D functions can be non-smooth (aka \textit{not learnable!})
+        \item \dots using only 2-layer nonlinearities and $2n + 1$ terms in the hidden layer is pretty restrictive
+    \end{itemize}
+    \vspace{1em}
+    \item \textit{But},
+    \begin{itemize}
+        \item We can argue that most ML-concerning functions are smooth, and
+        \item We can just stack $\phi$ layers and pray
+    \end{itemize}
+    \vspace{1em}
+    \item So, we are no longer using KA(R)T but moving towards a KA(A)T
+    \vspace{1em}
+    \item This is how \strong{Kolmogorov-Arnold Networks (KANs)} are born (Ziming Liu et al., 2024)
+\end{itemize}
+
+\end{frame}
