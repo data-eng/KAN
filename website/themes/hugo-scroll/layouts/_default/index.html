@@ -1,0 +1,161 @@
+{{ define "main" }}
+{{ $headless := .GetPage "./homepage" }}
+{{ if hugo.IsMultihost }}
+  {{ $headless := .Site.GetPage "/homepage" }}
+{{ end }}
+{{ $sections := $headless.Resources.ByType "page" }}
+{{ $sections := cond .Site.BuildDrafts $sections (where $sections "Draft" "==" false) }}
+{{ $content := where (where $sections "Params.external" "==" nil) "Params.detailed_page_homepage_content" "ne" false }}
+{{ $langs := .Page.AllTranslations }}
+{{ if hugo.IsMultihost }}
+  {{ $langs = .Site.Languages }}
+{{ end }}
+
+<!-- Welcome screen that scrolls out of view -->
+{{ if not .Params.header_use_video }}
+  {{ with $img := resources.Get .Params.header_image }}
+  {{ $image_options := $.Site.Params.image_options | default "webp q90 lanczos photo" -}}
+  <style>
+  /* Default cover for larger screens, converted to webp */
+  {{- with $img.Resize ( printf "%dx%d %s" $img.Width $img.Height $image_options ) -}}
+  #site-head.withCenteredImage {
+    background-image: url('{{- .RelPermalink -}}');
+  }
+  {{- end -}}
+
+  /*
+  Lower resolutions, uncropped. Aimed at desktop users.
+  We set __both__ max-width and max-height to make sure the image is never upscaled.
+  */
+  {{ range $width := slice 1920 1600 1366 }}
+    {{- with $img.Resize ( printf "%dx %s" $width $image_options ) }}
+    @media (max-width: {{- .Width -}}px) and (max-height: {{- .Height -}}px) {
+      #site-head.withCenteredImage { background-image: url('{{- .RelPermalink -}}'); }
+    }
+    {{- end }}
+  {{- end }}
+
+  /*
+  Lower resolutions, cropped to portrait. Useful for mobile. For "tall" displays (screen ratio < image ratio)
+  the "cover" algorithm first resizes the image to match the screen height, then __crops__ it to match the width.
+  We mimic this by resizing to height=1024, and then cropping to various widths. We set "max-height" to
+  ensure the height is never upscaled, but also max-aspect-ratio to ensure that each image is used in "tall-enough"
+  displays, in which our cropping would happen anyways!
+  */
+  {{- $img_temp := $img.Resize "x1024 q100" -}}/* high quality temporary image, to be cropped later */
+  {{ range $width := slice 900 600 360 }}
+    {{- with $img_temp.Crop ( printf "%dx1024 center %s" $width $image_options ) }}
+    @media (max-height: {{- .Height -}}px) and (max-aspect-ratio: {{ .Width }} / {{ .Height }}) {
+      #site-head.withCenteredImage { background-image: url('{{- .RelPermalink -}}'); }
+    }
+    {{- end }}
+  {{- end }}
+  </style>
+  {{ end }}
+<header id="site-head" class="withCenteredImage">
+{{ else }}
+<header id="site-head">
+{{ end }}
+
+    <div class="vertical">
+
+        {{ if .Params.header_use_video }}
+            <!-- A partial to be overwritten by the user.
+            Simply place a custom_header_video.html into
+            your local /layouts/partials-directory -->
+            {{- partial "custom_header_video.html" . -}}
+        {{ end }}
+
+  {{ $num_lang := len $langs }}
+  {{ if and (gt $num_lang 1) $.Site.Params.language_menu }}
+	<div id="site-languages" class="inner">
+    {{ range $langs }}
+      {{ $condition := eq .Lang $.Lang }}
+      {{ $lang_func := .Language.LanguageName }}
+      {{ $href := .RelPermalink }}
+      {{ if hugo.IsMultihost }}
+        {{ $langs = site.Sites }}
+        {{ $condition = eq . $.Site }}
+        {{ $lang_func = .LanguageName }}
+        {{ $href = .Home.Permalink }}
+      {{ end }}
+      {{ $lang_title := or $lang_func (.Lang | strings.ToUpper) }}
+      {{ if $condition }}
+        {{ if $.Site.Params.show_current_lang }}
+          <span class='btn-lang active'>{{ $lang_title }}</span>
+        {{ end }}
+      {{ else }}
+        <a class='btn-lang' href='{{ $href }}'>{{ $lang_title }}</a>
+      {{ end }}
+    {{ end }}
+	</div>
+	{{ end }}
+
+        <div id="site-head-content" class="inner">
+	    {{ with resources.Get .Params.header_logo }}<img id="blog-logo" alt="" src="{{ .RelPermalink }}" />{{ end }}
+
+            {{ if .Site.Params.title_guard }}<div class="title-and-description-guard">{{ end }}
+              {{ with .Params.header_headline }}<h1 class="blog-title">{{ . | safeHTML }}</h1>{{ end }}
+              {{ with .Params.header_subheadline }}<h2 class="blog-description">{{ . | safeHTML }}</h2>{{ end }}
+            {{ if .Site.Params.title_guard }}</div>{{ end }}
+
+            {{ range where $sections ".Params.header_menu" "eq" true }}
+              {{ $button_title := .Title }}
+              {{ with .Params.header_menu_title }}{{ $button_title = . }}{{ end }}
+
+              {{ if isset .Params "external" }}
+                 <a class='btn site-menu' href='{{ .Params.external | absURL }}'>{{ $button_title }}&nbsp;<i class="fa fa-external-link"></i></a>
+              {{ else if isset .Params "detailed_page_path" }}
+                 <a class='btn site-menu' href='{{ .Params.detailed_page_path | relURL }}'>{{ $button_title }}</a>
+              {{ else }}
+                {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
+                 <a class='btn site-menu' data-title-anchor='{{ anchorize $fnav_title }}' href='#{{ anchorize $fnav_title }}'>{{ $button_title }}</a>
+              {{ end }}
+            {{ end }}
+
+            {{ with (index $content 0) }}
+                {{ $first_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $first_title = . }}{{ end }}
+                <a id='header-arrow' href="#{{- anchorize $first_title -}}" aria-label="Go to first section"><i class="fa fa-angle-down"></i></a>
+            {{ end }}
+        </div>
+    </div>
+</header>
+
+<main class="content" role="main">
+    <!-- Render sticky left navigation menu -->
+    <div class='fixed-nav'>
+        {{ if eq .Params.nav_to_top_weight "first" }}
+            {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
+            <a class='fn-item' item_index='{{ 0 }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
+        {{ end }}
+        {{ $last_index_val := 0 }}
+        {{ range $index_val, $elem_val := $content }}
+            {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
+            <a class='fn-item' item_index='{{ (add $index_val 1) }}' href='#{{ anchorize $fnav_title }}'>{{ $fnav_title | safeHTML }}</a>
+            {{ $last_index_val = $index_val }}
+        {{ end }}
+        {{ if eq .Params.nav_to_top_weight "last" }}
+            {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
+            <a class='fn-item' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
+        {{ end }}
+    </div>
+
+    <!-- Render single-page content -->
+    {{ range $index_val, $elem_val := $content }}
+        {{ if .Title }}
+        {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
+        <div class='post-holder{{ if and (ne .Site.Params.invertSectionColors true) (not (modBool $index_val 2)) }} dark{{ else if and (eq .Site.Params.invertSectionColors true) (modBool $index_val 2) }} dark{{ end }}'>
+            <article id='{{ anchorize $fnav_title }}' class='post {{ if eq $index_val 0 }}first{{ end }} {{ if eq (add $index_val 1) (len $content) }}last{{ end }}'>
+                <header class="post-header">
+                    <h2 class="post-title">{{ .Title | emojify | safeHTML }}</h2>
+                </header>
+                <section class="post-content">
+                    {{ .Content }}
+                </section>
+            </article>
+            <div class='post-after{{ if and (ne .Site.Params.invertSectionColors true) (modBool $index_val 2) }} light{{ else if and (eq .Site.Params.invertSectionColors true) (not (modBool $index_val 2)) }} light{{ end }}'></div>
+        </div>
+        {{ end }}
+    {{ end }}
+</main>
+{{ end }}

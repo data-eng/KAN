@@ -1,0 +1,317 @@
+% https://easychair.org/conferences/?conf=ecai2025tutorials
+% at most 4 pages
+
+\documentclass{ecai} 
+
+\usepackage{xspace}
+\usepackage{natbib}
+\usepackage{lstdoc}
+
+\newcommand{\quotes}[1]{`#1'}
+\newcommand{\iit}{Institute of Informatics and Telecommunications, NCSR~\quotes{Demokritos}\xspace}
+
+ 
+\begin{document}
+
+\begin{frontmatter}
+
+
+\title{Introduction to Kolmogorov-Arnold Networks}
+
+\author{\fnms{Tatiana}~\snm{Boura}}
+\author{\fnms{Stasinos}~\snm{Konstantopoulos}}
+
+\address{Institute of Informatics and Telecommunications,
+  NCSR~\quotes{Demokritos}, Ag.~Paraskevi, Greece}
+
+
+\begin{abstract}
+The tutorial will introduce the attendees to Kolmogorov-Arnold
+Networks (KANs), a new machine learning framework that promises to be
+more interpretable and controllable than the multilayer perceptron (MLP).
+Besides defining KANs and explaining how they are trained, the
+tutorial will also guide attendees (through concrete examples) into
+understanding how to interpret and manually control a trained KAN.  The
+tutorial will also present the current state of the art regarding the
+different architectures proposed within the framework and how they
+have been applied to different tasks. As KANs are an innovative and
+potentially impactful advancement in AI, we aim to help attendees
+thoroughly understand their advantages and limitations and to motivate
+the community to experiment with KANs in different domains and tasks. 
+\end{abstract}
+
+\end{frontmatter}
+
+\hfill \break
+\textbf{Proposed format:} Quarter day
+%    Proposed format of the tutorial: half-day or quarter-day
+\\
+\textbf{Expected number of attendees:} 30--50
+
+
+
+\section{Tutorial Topic}
+
+%A brief description of why the tutorial topic would be of interest to
+%a substantial part of the ECAI audience.
+
+\paragraph{Objectives:}
+
+\begin{itemize}
+\item The tutorial aims to
+  \emph{introduce expert non-specialists to an AI-Deep Learning subarea},
+  that of Kolmogorov-Arnold Networks (KAN).
+%
+\item KANs are a brand new topic in machine learning, with the
+  original publication of the idea published less than a year
+  ago.\footnote{Z.~Liu, Y.~Wang, et al., KAN: Kolmogorov-Arnold
+    Networks. arXiv:2404.19756v1 [cs.LG], Apr 2024.
+    \url{https://arxiv.org/abs/2404.19756v1}}
+  But it is a topic of \emph{emerging importance for AI}, since
+  in this short time it has attracted impressive
+  interest from the AI community with more than 10 extensions and
+  applications published during 2024\footnote{Cf. Section~1 of
+    D.~Basina, J.~R. Vishal, et al., 
+    KAT to KANs: A review of Kolmogorov-Arnold Networks and the
+    neural leap forward. arXiv:2411.10622 [cs.LG], Nov 2024.
+    \url{https://arxiv.org/abs/2411.10622}}.
+  %
+\item The tutorial will \emph{explain} KANs, how they differ from the
+  multi-layer perceptron, and what are the characteristics of machine
+  learning tasks where they appear to be more promising,
+  \emph{motivating} researchers to experiment with them.
+  %
+\item One of the core promises of the KAN framework is that its
+  internal representation is more human-interpretable and more
+  human-controllable than deep neural networks, so motivating the
+  community to experiment with them can bring
+  \emph{significant social impact} through advancing interpretable
+  and controllable AI.
+\end{itemize}  
+
+\paragraph{Target Audience:}
+% Who is the target audience of the tutorial (first-year PhD students?,
+% experienced researchers?), including prerequisite knowledge?
+
+The target audience is machine learning researchers and practitioners,
+mostly those working on deep neural networks, regardless of seniority.
+An understanding of the foundational concepts of machine learning and
+artificial neural networks will be helpful, but a general
+understanding of AI concepts should suffice.
+
+
+\paragraph{Knowledge Conveyed:}
+%What knowledge will be conveyed?
+% What techniques/methods, concepts, or modeling frameworks will be conveyed
+%Will it be demonstrated in particular application scenarios? If so, in which?
+
+\begin{itemize}
+\item The definition and core concepts behind Kolmogorov-Arnold
+  Networks (KAN), and new machine learning framework.
+\item The relationship between the KAN framework and the
+  Kolmogorov-Arnold Theorem (KAT), as well as previous
+  work on the relationship between KAT and machine learning.
+\item The method for training KANs from data and an understanding of
+  the convergence proof and what this proof means for practical
+  applications.
+\item The different KAN architectures 
+  proposed in the literature and the empirical results from their
+  application.
+\item The interpretability and controllability claims of the
+  framework and hands-on examples of how to read and modify a trained
+  KAN.
+\end{itemize}
+
+
+
+\paragraph{Innovative and relevant nature of the topic}
+%Why is the topic innovative/relevant?
+
+Kolmogorov-Arnold Networks are a new approach to trainable networks
+where the parameters are not weights, but spline control points that
+define the functions that should be applied to the outputs of the
+previous layer. Removing weights from the representation has a
+profound effect on the \emph{interpretability} and
+\emph{controllability} of the network, since the internal
+representation can now be described in terms of mathematical functions
+connected into a \emph{crisp} network of composition and addition
+operations.
+%
+Naturally, this comes at the price of flexibility, so to fully exploit
+its potential we aim to motivate the AI community to experiment with
+KANs, map their scope of application, and find ways to bring out their
+advantages while alleviating their limitations.
+
+
+\section{Outline}
+
+\begin{enumerate}
+\item Introduction and background [15min]
+  \begin{itemize}
+  \item Introduction and tutorial outline
+  \item Kolmogorov-Arnold Theorem (KAT):
+    Formulation and proof sketch, at the level of abstraction
+    needed to facilitate understanding of how KANs operate
+  \item KAT used as a tool for understanding deep learning
+    and related results prior to Kolmogorov-Arnold Networks
+  \end{itemize}
+\item Kolmogorov-Arnold Networks (KAN) [30min]
+  \begin{itemize}
+  \item Definition of KAN and relationship to KAT
+  \item Training procedure and sketch of the convergence proof
+  \item Interpretability and controllability: What can be read from a
+    trained network and how can a trained network be manually
+    modified. Specific examples of reading out of a network and manually
+    modifying it.
+  \end{itemize}
+  \filbreak
+\item Specific KAN architectures and applications [30min]
+  \begin{itemize}
+  \item Experimental results using the original KAN architecture 
+  \item Recurrent architectures for sequence processing
+  \item Architectures for solving differential equations and other
+    physics tasks
+  \end{itemize}
+\item Closing Remarks [15min]
+  \begin{itemize}
+  \item Positioning in the machine learning space:
+    relationship to MLPs and to symbolic regression
+  \item Advantages and limitations, scope of potential applications
+  \item Ambitious and interesting future work items selected from the
+    literature
+  \end{itemize}
+\end{enumerate}
+    
+
+\section{Presenters}
+\noindent
+\textbf{Tatiana Boura}\footnote{Email: tatianabou@iit.demokritos.gr,
+  ORCID: \href{https://orcid.org/0009-0008-0656-4372}{0009-0008-0656-4372}}
+BSc in Informatics and Telecommunications (Athens, 2022),
+MSc in Artificial Intelligence (Piraeus, 2024).
+During her studies, she graduated with honors from her BSc and was awarded a Scholarship for Academic Excellence
+for both academic semesters of the master's program. She was also awarded by the University of Piraeus
+\footnote{Cf. \href{https://msc-ai.iit.demokritos.gr/el/announcements/vraveysi-apofoiton-toy-dpms-tehniti-noimosyni-apo-panepistimio-peiraios}{Graduate Awards 2024}}.
+She has been affiliated with the \iit since September 2023.
+During this time, she has worked on multiple cutting-edge AI-centered projects, focusing on the field of explainable
+AI (xAI), with an emphasis on neurosymbolic artificial intelligence.
+She served as a reviewer for ECAI 2024 and is a member of the Greek AI Society.
+
+\noindent
+\textbf{Stasinos Konstantopoulos}\footnote{Email: konstant@iit.demokritos.gr,
+  ORCID: \href{https://orcid.org/0000-0002-2586-1726}{0000-0002-2586-1726}}
+MEng in Computer Engineering and Informatics (Patras, 1997),
+MSc in Artificial Intelligence (Edinburgh, 1998),
+PhD on Inductive Logic Programming (Groningen, 2003), has been affiliated
+with the \iit since 2005. During this time he has worked on various areas
+of AI from computational logics to robot sensing to machine learning.
+He has been a member of the Greek AI Society since 2006 where he was
+PC Chair for its national AI conference (SETN 2010) and also served
+on the society's 2021-2022 Board. He is a regular reviewer for AI and
+Semantic Web conferences and journals, including ECAI.
+He teaches \textit{Fundamentals and Background on AI},
+\textit{Knowledge Representation and Reasoning} and
+\textit{AI Applications} at the MSc on AI jointly organized by
+University of Piraeus and NCSR \quotes{Demokritos}.\footnote{Cf.
+  \url{https://msc-ai.iit.demokritos.gr/en/people}}
+
+% Background in the tutorial area, including a list of publications/presentations
+% example of work in the area (ideally, a published tutorial-level
+% article or presentation materials on the subject)
+
+\noindent
+\textbf{Background:}
+%
+Tatiana and Stasinos' research on KANs focuses on recurrency and
+sequence processing where they developed \emph{seqKAN}, a new KAN
+architecture.\footnote{Submitted, under review.
+  Pre-print: \url{https://arxiv.org/abs/2502.14681},
+  implementation: \url{https://github.com/data-eng/seqKAN}
+  and \url{https://pypi.org/project/seqkan}}
+%
+In November 2024 they co-organized and jointly presented a 2-hour
+internal talk and workshop at the \iit with the aim to present the new
+framework to colleagues, present their own work on the subject, and
+motivate colleagues to apply KANs to different tasks.\footnote{Slides
+and bibliography handout are available at
+  \url{https://github.com/data-eng/KAN/tree/master/background}}
+The event attracted around 40 participants.\footnote{Cf. 
+  \url{https://www.iit.demokritos.gr/newsevents/iit-talk-on-kolmogorov-arnold-networks-theoretical-background-current-approaches-and-potential-next-steps}}
+
+
+\newpage
+\section{Information for communication purposes}
+
+% A two-sentence description of the tutorial, suitable for inclusion
+% in the conference brochure
+
+\paragraph{Two-sentence description:}
+
+The tutorial introduces attendees to Kolmogorov-Arnold Networks
+(KANs), a new approach to machine learning that was recently proposed
+as a more interpretable and controllable framework than the ubiquitous
+multi-layer perceptron. During the tutorial attendees will learn what
+the KAN framework is, how it is positioned in the general machine
+learning landscape, what is meant by the framework's strong
+interpretability and controllability claims, and what the literature has
+shown about their efficacy and scope of application.
+
+
+%A two-paragraph description of the tutorial, suitable for inclusion on
+%the conference website. It should mention the target audience
+
+\paragraph{Two-paragraph description:}
+
+The tutorial introduces attendees to Kolmogorov-Arnold Networks
+(KANs), a new approach to machine learning that was recently proposed
+as a more interpretable and controllable framework than the ubiquitous
+multi-layer perceptron. Besides providing an understanding of the KAN
+framework and its position within the overall machine-learning
+picture, the tutorial will also guide attendees through the different
+KAN architectures that have been proposed in the literature and their
+applications.
+
+The target audience is machine learning researchers and practitioners,
+and especially those working on deep neural networks. Besides the more
+theoretical understanding of KAN architectures, the tutorial will also
+present examples of how the interpretability and controllability of
+KANs is concretely realized. Finally the tutorial will discuss
+advantages and limitations of KANs for different application areas
+with the aim to motivate interested members of the audience to
+experiment with them.
+
+
+%A brief bio statement of the presenter(s)
+%For each presenter, a link to a picture that may be used by ECAI
+
+\paragraph{Brief bio statement, Tatiana Boura:}
+
+Tatiana (BSc in Informatics and Telecommunications, MSc in AI) is
+affiliated to the \iit where she has worked on
+cutting-edge AI-centered projects, focusing on the field of explainable
+AI (xAI), with an emphasis on neurosymbolic artificial intelligence.
+She is a member of the Greek AI Society.
+
+\noindent
+Photo: \url{https://avatars.githubusercontent.com/u/61378350}
+
+\paragraph{Brief bio statement, Stasinos Konstantopoulos:}
+
+Stasinos (MEng on Computer Engineering and Informatics, MSc on AI,
+PhD on ILP) is affiliated to the \iit where he has worked on various areas
+of AI from computational logics to robot sensing to machine
+learning. He is a member of the Greek AI Society and served on the
+society's 2021-2022 Board. He is a regular reviewer for AI and
+Semantic Web conferences and journals, including ECAI 2025. He is also
+an instructor at the MSc on AI jointly organized by University of
+Piraeus and NCSR~\quotes{Demokritos}.
+
+\noindent
+Photo: \url{https://avatars.githubusercontent.com/u/663585}
+
+\end{document}
+
+% LocalWords:  Kolmogorov Tatiana Boura Stasinos Konstantopoulos KAT
+% LocalWords:  perceptron ORCID BSc neurosymbolic ECAI MEng Patras
+% LocalWords:  Groningen SETN seqKAN MSc interpretability controllability
+% LocalWords:  xAI

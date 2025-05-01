@@ -27,3 +27,8 @@ presentation/out/*
 *.synctex.gz(busy)
 *.pdfsync
 
+## hugo site builder
+website/.hugo_build.lock
+website/public/
+website/resources/
+
