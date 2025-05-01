@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://data-eng.github.io/KAN"
 
 # This is a "one page"-website, so we do not need these kinds of pages...
 disableKinds = ["section", "taxonomy", "term", "RSS", "robotsTXT"]
@@ -41,14 +41,14 @@ title = "Introduction to Kolmogorov-Arnold Networks"
     title = "Introduction to Kolmogorov-Arnold Networks"
 
     # The "description" of your website. This is used in the meta data of your generated html.
-    description = "Nutrition Coach & Chef Consultant"
+    description = "Introduction to Kolmogorov-Arnold Networks"
 
     # Show a menu of languages available
-    language_menu = true
+    language_menu = false
 
     # Show also a language menu item for the current language, if false only
     # show the remaining languages
-    show_current_lang = true
+    show_current_lang = false
 
     # A "copyright"-line to be added at the bottom of the page.
     # Hint: Plain HTML is supported in here as well. So you may e.g. add a link to your legal imprint-page.
@@ -87,7 +87,7 @@ title = "Introduction to Kolmogorov-Arnold Networks"
     [[params.contacts]]
         label = "GitHub"
         value = "github.com/data-eng/KAN"
-        url = "https://github.com/data-eng/KAN"
+        url = "github.com/data-eng/KAN"
         icon = "fa-brands fa-github"
 
     # Add additional contacts here!
@@ -103,3 +103,7 @@ title = "Introduction to Kolmogorov-Arnold Networks"
     weight = 10
     languageName = "English"
     contentDir = "content"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
