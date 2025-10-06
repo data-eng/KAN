@@ -14,6 +14,15 @@
 \usepackage{tabularx}
 \usepackage[table,xcdraw]{xcolor}
 
+
+%%% NOTE
+%%% Commenting in/out produces three different versions
+%%% Look for VersionX below
+%%% Version0: All content, more than 2h
+%%% Version1: Around 90min
+%%% Version2: Around 25min
+
+
 \newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$}
 
 
@@ -37,7 +46,7 @@
     \usecolortheme{fqs}
 }
 
-\title[KANs]{Kolmogorov Arnold Networks}
+\title[KANs]{Introduction to \\ Kolmogorov-Arnold Networks}
 \subtitle{Theoretical background,\\ current approaches,\\ potential next steps}
 
 \author[T Boura \& S Konstantopoulos]{Tatiana Boura \\
@@ -47,7 +56,7 @@
   \includegraphics[height=4em]{fqsstyle/assets/ncsrd}
   \includegraphics[height=4em]{fqsstyle/assets/deg}}
 
-\date{28 November 2024}
+\date{ECAI Tutorial, 26 October 2025}
 
 \setbeamersize{text margin left=.05\pdfpagewidth,text margin right=.05\pdfpagewidth}
 
@@ -108,8 +117,15 @@
   \end{frame}
 }
 
-\input{contents/kat_formulation.tex}
-\input{contents/kat_proof.tex}
+% Version0
+%\input{contents/kat_formulation.tex}
+%\input{contents/kat_proof.tex}
+
+% Version1
+\input{contents/kat_theory.tex}
+
+% Version2
+%\input{contents/kat_intro.tex}
 
 
 \section{Kolmogorov-Arnold Networks}
