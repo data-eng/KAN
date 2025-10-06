@@ -3,68 +3,24 @@
 %% Historical context
 %%
 
-\begin{frame}{Hilbert's 13th}
+\begin{frame}{Historical Context}
 
-\begin{columns}
-
-  \begin{column}{7.5cm}
-  \begin{itemize}
-  \item Since Tschirnhaus (1683) it is known that every 7th-degree can be
-    algebraically reduced to $x^{7}+ax^{3}+bx^{2}+cx+1=0$
-  \item Algebraic solutions are functions of three variables
-  \item \emph{Can this be expressed as the composition of a finite number
-    of two-variable functions?} (Hilbert 1900, 1902)
-  \item Following up on a series of post-Galois results on trying to
-    understand high-order algebraic polynomial equations
-  \end{itemize}
-  \end{column}
-
-  \begin{column}{4.5cm}
-    \begin{tikzpicture}
-      \node (cardano) {\includegraphics[width=2cm]{contents/images/cardano}};
-      \node (galois) at ([xshift=0.3cm] cardano.south west)
-            {\includegraphics[width=3cm]{contents/images/galois}};
-      \node (hilbert) at ([xshift=0.5cm,yshift=0.5cm] galois.south west)
-            {\includegraphics[width=4cm]{contents/images/hilbert}};
-    \end{tikzpicture}
-  \end{column}
-
-\end{columns}
-
-\end{frame}
-
-
-
-\begin{frame}{Kolmogorov and Arnold's results}
-
-\begin{columns}
-
-  \begin{column}{7cm}
-  \begin{itemize}
-  \item Kolmogorov (1956): Every continuous multi-variable function
-    can be expressed as the composition of a finite number of
-    three-variable functions \vspace{0.3em}
-  \item Arnold (1957): Only two-variable functions are really needed \vspace{0.3em}
-  \item Kolmogorov (1957): Actually, the only two-variable function
-    needed is addition \vspace{0.3em}
-  \item This is a generalization of Hilbert's question, but the
-    univariate functions are not necessarily algebraic
-  \end{itemize}
-  \end{column}
-
-  \begin{column}{5cm}
-    \begin{tikzpicture}
-      \node (galois) {\includegraphics[width=2cm]{contents/images/galois}};
-      \node (hilbert) at ([xshift=0.3cm] galois.south east)
-            {\includegraphics[width=3cm]{contents/images/hilbert}};
-      \node (kolmogorov) at ([xshift=-1cm,yshift=0.5cm] hilbert.south west)
-            {\includegraphics[width=3cm]{contents/images/kolmogorov}};
-      \node (arnold) at ([xshift=-0.3cm,yshift=0.5cm] hilbert.south east)
-            {\includegraphics[width=3cm]{contents/images/arnold}};
-    \end{tikzpicture}
-  \end{column}
-
-\end{columns}
+\begin{itemize}
+\item Every 7th-degree can be algebraically reduced to
+  $x^{7}+ax^{3}+bx^{2}+cx+1=0$ (Tschirnhaus, 1683)
+\item Algebraic solutions are functions of three variables
+\item Hilbert's 13th (1900, 1902):
+  Can this be expressed as the composition of a finite number
+  of two-variable functions?
+\item Kolmogorov (1956): Every continuous multi-variable function
+  can be expressed as the composition of a finite number of
+  three-variable functions \vspace{0.3em}
+\item Arnold (1957): Only two-variable functions are really needed \vspace{0.3em}
+\item Kolmogorov (1957): Actually, the only two-variable function
+  needed is addition \vspace{0.3em}
+\item This is a generalization of Hilbert's question, but the
+  univariate functions are not necessarily algebraic
+\end{itemize}
 
 \end{frame}
 
@@ -242,7 +198,7 @@ $$
 The proof proceeds in three steps:
 %
 \begin{itemize}
-\item Cover the unit square
+\item Break the input range into non-overlapping intervals with gaps
 \item Construct the inner functions $\psi$
 \item Construct the outer functions $\phi$
 \end{itemize}
@@ -289,36 +245,11 @@ The proof proceeds in three steps:
 
 \begin{frame}{Proof Sketch Step 2: Construct the inner functions}
 
-Construct a similar series $\mu_i$ for the second dimension.
-Then:
-$$
-\lambda_i+\mu_i < \lambda_{i+1}+\mu_{i+1} \leq \lambda_i + \mu_i + 2\frac{1}{2^k}
-$$
-so an $\epsilon_k < 2^{-k}$ can be found such that the closed intervals
-$\left[ \lambda_i+\mu_i , \lambda_i+\mu_i+2\epsilon_k \right]$
-do not intersect.
-
-\vskip 1em
-
-Since they do not intersect, we can apply the same logic as before to
-construct two functions $\psi_1,\psi_2$
-such that their addition maps elements from the $S_k$ squares
-we constructed before, to values within these intervals:
-
-$$
-\mbox{For each } x_1,x_2\in S_k^q,
-\psi_1(x_1)+\psi_2(x_2) \in \left[ \lambda_i+\mu_i , \lambda_i+\mu_i+2\epsilon_k\right]
-$$
-
-\end{frame}
-
-
-
-\begin{frame}{Proof Sketch Step 2: Construct the inner functions}
-
 \begin{columns}
 
   \begin{column}{7cm}
+  Construct a similar series for the second dimension; Add.
+  \vskip 1em
   There are many solutions, but Sprecher's (1972) formulation gives us
   something we can visualize:
   \vskip 1em
@@ -442,7 +373,6 @@ Kudos to Kolmogorov and Arnold for:
   the significance of the result \vspace{0.5em}
 \item Anticipating that multiple arguments can be passed as one complex
   \strong{record} a couple of years before COBOL \vspace{0.5em}
-\item Making people reconsider the definition of \strong{function complexity}
 \end{itemize}
 
 \end{frame}
