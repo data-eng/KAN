@@ -6,7 +6,6 @@
         \begin{table}[ht]
             \centering
             \resizebox{0.98\textwidth}{!}{%
-            \rowcolors{2}{brown!20}{white}
             \begin{tabular}{|p{6.5cm}|p{9cm}|p{3.3cm}|}
                 \hline
                 \rowcolor{brown!60}
@@ -15,8 +14,8 @@
                 Kolmogorov-Arnold Network Ordinary Differential Equations (KAN-ODEs) & Vanilla KAN used as an approximator for a dynamical system in the neural ODE framework & Koenig et al.\\ \hline
                 Wavelet Kolmogorov-Arnold Networks (Wav-KAN) & KAN with shape [28x28,32,10] using wavelets instead of B-splines; Inputs are complete MNIST images & Bozorgasl and Chen \\ \hline
                 Temporal Kolmogorov-Arnold Networks (TKAN) & Changes the output of the LSTM cell to $\sigma(\text{KAN}(x))$ & Genet and Inzirillo \\ \hline
-            \end{tabular}%
-            }
+            \end{tabular}
+            }%
         \end{table}
     \end{center}
 \end{frame}
