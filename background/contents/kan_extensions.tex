@@ -1,22 +1,100 @@
-\begin{frame}{Extensions}
-    \noindent
-    \begin{center}
-        \renewcommand{\arraystretch}{1.8}
-        \setlength{\tabcolsep}{8pt}
-        \begin{table}[ht]
-            \centering
-            \resizebox{0.98\textwidth}{!}{%
-            \begin{tabular}{|p{6.5cm}|p{9cm}|p{3.3cm}|}
-                \hline
-                \rowcolor{brown!60}
-                \textbf{Name} & \textbf{TLTR} & \textbf{Reference (2024)} \\ \hline
-                KAN time series forecasting network & Vanilla KAN with shape [168,40,40,40,24] predicts 24 time-steps from 168 & Vaca-Rubio et al. \\ \hline
-                Kolmogorov-Arnold Network Ordinary Differential Equations (KAN-ODEs) & Vanilla KAN used as an approximator for a dynamical system in the neural ODE framework & Koenig et al.\\ \hline
-                Wavelet Kolmogorov-Arnold Networks (Wav-KAN) & KAN with shape [28x28,32,10] using wavelets instead of B-splines; Inputs are complete MNIST images & Bozorgasl and Chen \\ \hline
-                Temporal Kolmogorov-Arnold Networks (TKAN) & Changes the output of the LSTM cell to $\sigma(\text{KAN}(x))$ & Genet and Inzirillo \\ \hline
-            \end{tabular}
-            }%
-        \end{table}
-    \end{center}
+\begin{frame}{Alterations}
+	\noindent
+	
+	\begin{itemize}
+		\item Different representation theorem
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\setlength{\tabcolsep}{8pt}
+			\begin{table}[ht]
+				\centering
+				\resizebox{0.98\textwidth}{!}{%
+					\begin{tabular}{|p{7.5cm}|p{8.0cm}|p{3.3cm}|}
+						\hline
+						\rowcolor{brown!60}
+						\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+						Deep Learning Alternatives of the
+						Kolmogorov Superposition Theorem & Utilizes the Laczkovich Representation Theorem to reduce the number of learned parameters &  Guilhoto and  Perdikaris (2025)\\ \hline
+					\end{tabular}
+				}%
+			\end{table}
+		\end{center}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Alterations}
+	\noindent
+	\begin{itemize}
+		\item Different internal representation
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\setlength{\tabcolsep}{8pt}
+			\begin{table}[ht]
+				\centering
+				\resizebox{0.98\textwidth}{!}{%
+					\begin{tabular}{|p{7.5cm}|p{8.0cm}|p{3.3cm}|}
+						\hline
+						\rowcolor{brown!60}
+						\hline
+						\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+						Chebyshev Polynomial-Based Kolmogorov-Arnold Networks & Activattion functions are modeled with Chebyshev Polynomials & Sidharth  et al. (2024) \\ \hline
+						fKAN: Fractional Kolmogorov-Arnold Networks with trainable Jacobi basis functions & Utilizes fractional-orthogonal Jacobi functions as basis functions &  Aghaei (2025)\\ \hline
+						rKAN: Rational Kolmogorov-Arnold Networks & Utilizes rational functions as basis functions &  Aghaei (2024)\\ \hline
+						Wavelet Kolmogorov-Arnold Networks (Wav-KAN) & Uses wavelets instead of B-splines; Inputs are complete MNIST images & Bozorgasl and Chen \\ \hline
+					\end{tabular}
+				}%
+			\end{table}
+		\end{center}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Temporal Extensions}
+	\noindent
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\setlength{\tabcolsep}{8pt}
+		\begin{table}[ht]
+			\centering
+			\resizebox{0.98\textwidth}{!}{%
+				\begin{tabular}{|p{6.5cm}|p{9cm}|p{3.3cm}|}
+					\hline
+					\rowcolor{brown!60}
+					\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+					Temporal Kolmogorov-Arnold Networks (TKAN) & Changes the output of the LSTM cell to $\sigma(\text{KAN}(x))$ & Genet and Inzirillo (2024) \\ \hline
+				\end{tabular}
+			}%
+		\end{table}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Applications}
+	\noindent
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\setlength{\tabcolsep}{8pt}
+		\begin{table}[ht]
+			\centering
+			\resizebox{0.98\textwidth}{!}{%
+				\begin{tabular}{|p{3.7cm}|p{5.7cm}|p{6cm}|p{3.3cm}|}
+					\hline
+					\rowcolor{brown!60}
+					\textbf{Domain/Application} & \textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+					Physics Informed Modeling & Kolmogorov-Arnold Network Ordinary Differential Equations (KAN-ODEs) & Vanilla KAN used as an approximator for a dynamical system in the neural ODE framework & Koenig et al. (2024)\\ \hline
+					Human Activity Recognition & iKAN & Incremental Learning paired with KANs; Encoder and froxen KAN-based classifier training & Liu et al. (2024)\\ \hline
+				\end{tabular}
+			
+			}%
+		\end{table}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Failed application (Temp)}
+	\vspace{-0.8cm}
+	\begin{figure}
+		\noindent
+		\begin{center}
+			\includegraphics[scale=0.55]{whole_model}
+		\end{center}
+	\end{figure}
 \end{frame}
 
