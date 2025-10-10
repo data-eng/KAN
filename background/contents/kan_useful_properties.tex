@@ -78,7 +78,7 @@
        \item This leads to a MLP that is very large and potentially computationally intractable \vspace{0.3em}
        \item On the other hand, KAN's approximation ability is more dependent on the number of control points in each activation function and less on the data's dimension \vspace{0.3em}
        \item So, KAN's size will not increase exponentially as the data dimensions increase, but its grid should become more fine-grained \vspace{0.3em}
-       \item However, we should note that the current implementation of KANs is not as optimized as the one for MLPs, so in practice the training times for high-dimensional data are comparable
+       \item \textit{However}, we should note that the current (spline) implementation of KANs is not as optimized as the one for MLPs, so in practice the training times for high-dimensional data are comparable
    \end{itemize}
 \end{frame}
 
@@ -92,4 +92,14 @@
        \item This is desirable assuming faraway regions may have already stored information that we want to preserve \vspace{0.3em}
        \item By contrast, since MLPs usually use global activations any local change may propagate to regions far away \vspace{0.3em}
    \end{itemize}
+\end{frame}
+
+\begin{frame}{Kind reminder: KAN is yet another function approximator!}
+	\vspace{-0.8cm}
+	\begin{figure}
+		\noindent
+		\begin{center}
+			\includegraphics[scale=0.55]{whole_model}
+		\end{center}
+	\end{figure}
 \end{frame}

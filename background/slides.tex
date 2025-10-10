@@ -1,34 +1,63 @@
 \documentclass[10pt, aspectratio=169]{beamer}
 \PassOptionsToPackage{table,xcdraw}{xcolor}
 \usepackage{graphicx}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb, amsfonts}
 \usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{media9}
-\usepackage{multicol}
+
 \usepackage{tikz}
 \usetikzlibrary{positioning, fit, arrows.meta, shapes}
+\usetikzlibrary{arrows, calc, patterns, backgrounds}
+\usetikzlibrary{decorations.pathreplacing}
+
 \usepackage{transparent}
 \usepackage{listings}
 \usepackage{booktabs}
+
 \usepackage{tabularx}
-\usepackage[table,xcdraw]{xcolor}
-
-\newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$}
-
-
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-
+\usepackage{multicol}
 \usepackage{multirow}      % For merging rows in tables
 \usepackage{colortbl}      % For coloring cells
 
-\usepackage{fqsstyle/beamerthemefqs}
-\usepackage{fqsstyle/beamercolorthemefqs}
+\usepackage[table,xcdraw]{xcolor}
+%%% NOTE
+%%% Commenting in/out produces three different versions
+%%% Look for VersionX below
+%%% Version0: All content, more than 2h
+%%% Version1: Around 90min
+%%% Version2: Around 25min
+
+
+\newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+\usepackage{beamerthemefqs}
+\usepackage{beamercolorthemefqs}
 
 \usepackage{comment}
 
-\input{fqsstyle/init.tex}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    % linkcolor=umBlue,
+    % filecolor=magenta,
+    % urlcolor=cyan,
+    % pdftitle={Overleaf Example},
+    % pdfpagemode=FullScreen,
+    }
+\usepackage{wrapfig}
+\usepackage{helvet}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+\usepackage{datetime}
+\usepackage{setspace}
+\usepackage{fancyvrb}
+
+\input{fqs_commands.tex}
+
 \newcommand{\strong}[1]{\textcolor{umBlueLighter}{#1}}
 \newcommand{\quotes}[1]{`#1'}
 
@@ -37,17 +66,16 @@
     \usecolortheme{fqs}
 }
 
-\title[KANs]{Kolmogorov Arnold Networks}
+\title[KANs]{Introduction to \\ Kolmogorov-Arnold Networks}
 \subtitle{Theoretical background,\\ current approaches,\\ potential next steps}
 
-\author[T Boura \& S Konstantopoulos]{Tatiana Boura \\
-  Stasinos Konstantopoulos}
+\author[T Boura \& S Konstantopoulos]{Tatiana Boura \\ Stasinos Konstantopoulos}
 
 \institute[]{
-  \includegraphics[height=4em]{fqsstyle/assets/ncsrd}
-  \includegraphics[height=4em]{fqsstyle/assets/deg}}
+  \includegraphics[height=4em]{assets/ncsrd}
+  \includegraphics[height=4em]{assets/deg}}
 
-\date{28 November 2024}
+\date{ECAI Tutorial, 26 October 2025}
 
 \setbeamersize{text margin left=.05\pdfpagewidth,text margin right=.05\pdfpagewidth}
 
@@ -108,8 +136,15 @@
   \end{frame}
 }
 
-\input{contents/kat_formulation.tex}
-\input{contents/kat_proof.tex}
+% Version0
+%\input{contents/kat_formulation.tex}
+%\input{contents/kat_proof.tex}
+
+% Version1
+\input{contents/kat_theory.tex}
+
+% Version2
+%\input{contents/kat_intro.tex}
 
 
 \section{Kolmogorov-Arnold Networks}
@@ -159,7 +194,7 @@
 
 \begin{columns}
 \begin{column}{6cm}
-\includegraphics[width=5cm]{fqsstyle/assets/deg} \\
+\includegraphics[width=5cm]{assets/deg} \\
 \end{column}
 \begin{column}{6cm}
 Code, bibliography, slides:\\

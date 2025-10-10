@@ -1,56 +1,30 @@
 
-\begin{frame}{Related Projects}
 
-\strong{MANOLO: Explainability, computational efficiency}
-%  
+\begin{frame}{Possible things to look into}
+
 \begin{itemize}
-\item Explore KANs as explainable models
-\item Explore ways to reduce inefficiency
-\end{itemize}
-
-\vskip 1em
-
-\strong{NavGreen: Maximizing efficiency of solar power usage}
-%  
-\begin{itemize}
-\item Heat output, timeseries prediction
-\item Modelling a physical phenomenon, KAN might outperform Transformer
-\end{itemize}
-
-\vskip 1em
-
-\strong{Christoforos' MSc thesis:}
-%  
-\begin{itemize}
-\item Using prior domain knowledge as KAN activation functions
+\item Try to enforce a `separation of concerns', making more localized changes to account for observed loss
+  \vspace{0.5cm}
+\item Experiment with non-BP parameter estimators
 \end{itemize}
 
 \end{frame}
 
-
-
-\begin{frame}{Plans}
-
-\begin{itemize}
-\item Deeper integration of KAN and recursive time-series
-  processing
-\item Mix prior and learned activation functions
-  \begin{itemize}
-  \item Exploit prior knowledge where available
-  \item Give network flexibility to select \& parameterize, but also
-    to model residuals from scratch
-  \end{itemize}
-\item CL4-2025-03-DIGITAL-EMERGING-07:
-  \begin{itemize}
-  \item Formal reasoning, mathematical problem-solving, confidence
-    level estimation, long-term planning, and seamless adaptation to
-    dynamic environments
-  \item Continual learning, seamlessly adapt, learn from changing
-    conditions, and retain knowledge essential for operation in
-    dynamic, real-world environments
-  \item Explainable AI and Trustworthy Decision-Making: causal
-    inference, transparency, accountability
-  \end{itemize}
-\end{itemize}
-
+\begin{frame}{Possible things to look into}
+	
+%	\vspace{-2.5cm}
+	
+	\begin{center}
+		\textcolor{umGreen}{TUGraz -- PML tailored slide.. Just throwing (not so deep) ideas}
+	\end{center}
+	
+	\begin{itemize}
+		\item \textbf{Learning Probabilistic Circuits with Theoretical Constraints from KART?} Structure learning in PCs by introducing KAN-inspired constraints, such as enforcing that the model structure mirrors a composition of univariate functions?
+		\vspace{0.5cm}
+		\item \textbf{Probabilistic Reformulation of KA Superposition?} Can we extend KA to distributions? Can complex joint distributions be decomposed analogously using compositions of low-dimensional distributions?
+		\vspace{0.5cm}
+		\item \textbf{Invertible Probabilistic Circuits via KA Decomposition?} Can we replace standard flow coupling layers with compositions of learned univariate functions and additive operations?
+	\end{itemize}
+	
 \end{frame}
+

@@ -1,23 +1,179 @@
-\begin{frame}{Extensions}
-    \noindent
-    \begin{center}
-        \renewcommand{\arraystretch}{1.8}
-        \setlength{\tabcolsep}{8pt}
-        \begin{table}[ht]
-            \centering
-            \resizebox{0.98\textwidth}{!}{%
-            \rowcolors{2}{brown!20}{white}
-            \begin{tabular}{|p{6.5cm}|p{9cm}|p{3.3cm}|}
-                \hline
-                \rowcolor{brown!60}
-                \textbf{Name} & \textbf{TLTR} & \textbf{Reference (2024)} \\ \hline
-                KAN time series forecasting network & Vanilla KAN with shape [168,40,40,40,24] predicts 24 time-steps from 168 & Vaca-Rubio et al. \\ \hline
-                Kolmogorov-Arnold Network Ordinary Differential Equations (KAN-ODEs) & Vanilla KAN used as an approximator for a dynamical system in the neural ODE framework & Koenig et al.\\ \hline
-                Wavelet Kolmogorov-Arnold Networks (Wav-KAN) & KAN with shape [28x28,32,10] using wavelets instead of B-splines; Inputs are complete MNIST images & Bozorgasl and Chen \\ \hline
-                Temporal Kolmogorov-Arnold Networks (TKAN) & Changes the output of the LSTM cell to $\sigma(\text{KAN}(x))$ & Genet and Inzirillo \\ \hline
-            \end{tabular}%
-            }
-        \end{table}
-    \end{center}
+\begin{frame}{Alterations}
+	\noindent
+	
+	\begin{itemize}
+		\item Different representation theorem
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\setlength{\tabcolsep}{8pt}
+			\begin{table}[ht]
+				\centering
+				\resizebox{0.98\textwidth}{!}{%
+					\begin{tabular}{|p{7.5cm}|p{8.0cm}|p{3.3cm}|}
+						
+						\rowcolor{brown!60}
+						\hline
+						\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+						Deep Learning Alternatives of the
+						Kolmogorov Superposition Theorem & Utilizes the Laczkovich Representation Theorem to reduce the number of learned parameters &  Guilhoto and  Perdikaris (2025)\\ \hline
+					\end{tabular}
+				}%
+			\end{table}
+		\end{center}
+	\end{itemize}
 \end{frame}
+
+\begin{frame}{Alterations}
+	\noindent
+	\begin{itemize}
+		\vspace{-0.65cm}
+		\item Different internal representation -- with the main objective being efficiency
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\setlength{\tabcolsep}{8pt}
+			\begin{table}[ht]
+				\centering
+				\resizebox{0.98\textwidth}{!}{%
+					\begin{tabular}{|p{6.8cm}|p{8.2cm}|p{3.7cm}|}
+						\rowcolor{brown!60}
+						\hline
+						\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+						Chebyshev Polynomial-Based Kolmogorov-Arnold Networks & Activattion functions are modeled with Chebyshev Polynomials & Sidharth  et al. (2024) \\ \hline
+						fKAN: Fractional Kolmogorov-Arnold Networks with trainable Jacobi basis functions & Utilizes fractional-orthogonal Jacobi functions as basis functions &  Aghaei (2025)\\ \hline
+						FastKAN & B-slines are approximated with Gaussian radial basis functions. & Li (2024)\\ \hline
+						Wavelet Kolmogorov-Arnold Networks (Wav-KAN) & Uses wavelets instead of B-splines & Bozorgasl and Chen (2024) \\ \hline
+					\end{tabular}
+				}%
+			\end{table}
+		\end{center}
+	\end{itemize}
+ \begin{center}
+	\textit{\scriptsize \textcolor{blue!50!black}{Faster KANs $\rightarrow$ sacrifices are made}} \vspace{1em}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Extensions}
+		\begin{itemize}
+		\item Temporal
+	\noindent
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\setlength{\tabcolsep}{8pt}
+		\begin{table}[ht]
+			\centering
+			\resizebox{0.98\textwidth}{!}{%
+				\begin{tabular}{|p{6.5cm}|p{9cm}|p{3.3cm}|}
+					
+					\rowcolor{brown!60}
+					\hline
+					\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+					seqKAN: Sequence processing with Kolmogorov-Arnold Networks   &  Replaces the hidden and output layers of an RNN with pure KAN functions, i.e., without trainable weights   & Boura and Konstantopoulos (2025) \\ \hline
+					Temporal Kolmogorov-Arnold Networks (TKAN) & Changes the output of the LSTM cell to $\sigma(\text{KAN}(x))$ & Genet and Inzirillo (2024) \\ \hline
+					KANsformer & An encoder-decoder architecture that utilizes KANs in the decoder & Xie et. al (2024) \\ \hline
+				\end{tabular}
+			}%
+		\end{table}
+	\end{center}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Extensions}
+	\begin{itemize}
+		\item Convolutions
+		
+		\noindent
+		\vspace{-0.75cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\setlength{\tabcolsep}{8pt}
+			\begin{table}[ht]
+				\centering
+				\resizebox{0.98\textwidth}{!}{%
+					\begin{tabular}{|p{6.8cm}|p{8.6cm}|p{3.4cm}|}
+						\rowcolor{brown!60}
+						\hline
+						\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+						Convolutional Kolmogorov-Arnold Networks & Replaces convolutional kernels with KAN kernels & Bodner et al. (2025) \\ \hline
+					\end{tabular}
+				}%
+			\end{table}
+		\end{center}
+		\vspace{0.25cm}
+		\item Graph
+	\noindent
+	\vspace{-0.3cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\setlength{\tabcolsep}{8pt}
+		\begin{table}[ht]
+			\centering
+			\resizebox{0.98\textwidth}{!}{%
+				\begin{tabular}{|p{6.8cm}|p{8.6cm}|p{3.4cm}|}
+					\rowcolor{brown!60}
+					\hline
+					\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+					GKAN: Graph Kolmogorov-Arnold Networks & Performs the aggregation of the graph nodes with KANs & Kiamari et al. (2024) \\ \hline
+				\end{tabular}
+			}%
+		\end{table}
+	\end{center}
+	\vspace{0.25cm}
+	\item Quantum
+	\noindent
+	\vspace{-0.3cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\setlength{\tabcolsep}{8pt}
+		\begin{table}[ht]
+			\centering
+			\resizebox{0.98\textwidth}{!}{%
+			\begin{tabular}{|p{6.8cm}|p{8.6cm}|p{3.4cm}|}
+					\rowcolor{brown!60}
+					\hline
+					\textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+					QKAN: Quantum Kolmogorov-Arnold$\quad$ $\quad$ Networks & Exploits quantum linear algebra to apply parameterized activation functions on the edges of the network & Ivashkov et al. (2024) \\ \hline
+				\end{tabular}
+			}%
+		\end{table}
+	\end{center}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Applications}
+	\noindent
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\setlength{\tabcolsep}{8pt}
+		\begin{table}[ht]
+			{\small
+			\centering
+			\vspace{-0.25cm}
+			\resizebox{0.98\textwidth}{!}{%
+				\begin{tabular}{|p{4.0cm}|p{4.9cm}|p{6.5cm}|p{3.1cm}|}
+					%\hline
+					\rowcolor{brown!60}
+					\hline
+					\textbf{Domain/Application} & \textbf{Name} & \textbf{TLDR} & \textbf{Reference} \\ \hline
+					Physics Informed Modeling & Kolmogorov-Arnold Network Ordinary Differential Equations (KAN-ODEs) & Vanilla KAN used as an approximator for a dynamical system in the neural ODE framework & Koenig et al. (2024)\\ \hline
+					Physics Informed Modeling & Kolmogorov-Arnold Network & Enhance KANs networks with a physics informed loss & Liu et al. (2024)\\ \hline
+					Human Activity Recognition & iKAN & Incremental Learning paired with KANs; Encoder and frozen KAN-based classifier training & Liu et al. (2024)\\ \hline
+					Medical Diagnostics & Bayesian Kolmogorov Arnold Networks (BKANs) & Utilize probabilistic splines to better tackle uncertainty & Hassan (2024)\\ \hline
+					EEG processing & KAN-EEG & Utilization of KANs as a key component for identifying epileptic seizures from pre-recorded EEG signals & Conteras et al. (2025)\\ \hline
+					Transportation and Mobility & TrafficKAN-GCN & Utilization of a Graph Convolutional-based Kolmogorov-Arnold network for traffic flow optimization & Zhang et al. (2025)\\ \hline
+					Environment and Energy & Smart home energy prediction framework & Utilization of temporal Kolmogorov-Arnold transformer (TKAT) & Lu et al. (2025)\\ \hline
+				\end{tabular}
+			
+			}%
+		}
+		\end{table}
+	\end{center}
+\end{frame}
+
+
+
+
 
