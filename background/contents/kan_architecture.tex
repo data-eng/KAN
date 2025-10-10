@@ -310,7 +310,7 @@
     \begin{itemize}
         \item \strong{B-splines} (basis splines) are $C^2$-continuous B\'ezier splines \vspace{0.5em}
         \item B-splines of order $k$ are polynomial basis functions for splines of the same order, where, any spline can be represented as a linear combination of B-splines  \vspace{0.5em}
-        \item Additionally, there exists a unique combination of B-splines for any given spline (de Boor, 1978) \vspace{0.5em}
+        \item Additionally, there exists a unique combination of B-splines for any given spline \textcolor{citations}{(de Boor, 1978)} \vspace{0.5em}
         \item B-splines are fitting candidates for performing the so-called \textbf{spline interpolation} \vspace{0.2em}
         \end{itemize}
 \end{frame}
@@ -318,13 +318,13 @@
 \begin{frame}{B-splines: Spline interpolation}
     \begin{itemize}
         \item Spline interpolation is used to approximate functions by fitting splines, rather than using a single high-degree polynomial curve \vspace{0.2em}
-        \item This process arises naturally from the formal definition of B-splines: it recursively defines each basis from a knot vector (Kaihuai, 1998),
+        \item This process arises naturally from the formal definition of B-splines: it recursively defines each basis from a knot vector \textcolor{citations}{(Kaihuai, 1998)},
         which indicates the positions where the splines should be connected \vspace{0.2em}
         \item Given \strong{grid G} we define a spline $S$ of $k^{\text{th}}$ order as:
             $$S_{k,G}(x) = \sum_i c_i B_{i,k}(x), \text{ where } $$
           $c_i$ are the \strong{coefficients} and $B_{i,k}(x)$ are the corresponding basis functions \vspace{0.2em}
           \begin{itemize}
-            \item Liu et al. call grid what is usually called a uniform knot vector and coefficients what are usually called control points
+            \item \textcolor{citations}{Liu et al.} call grid what is usually called a uniform knot vector and coefficients what are usually called control points
           \end{itemize}
         \item This process maximizes pre-computed elements (\textit{minimizing possible learnable parameters})
     \end{itemize}

@@ -7,19 +7,19 @@
 
 \begin{itemize}
 \item Every 7th-degree can be algebraically reduced to
-  $x^{7}+ax^{3}+bx^{2}+cx+1=0$ (Tschirnhaus, 1683)
+  $x^{7}+ax^{3}+bx^{2}+cx+1=0$ \textcolor{citations}{(Tschirnhaus, 1683)}
   \begin{itemize}
   \item Solving this means finding the three-variable function that maps
     $a,b,c$ to $x$
   \end{itemize}
-\item Hilbert's 13th (1900, 1902):
+\item \textcolor{citations}{Hilbert's 13th (1900, 1902)}:
   Can this function be expressed as the composition of a finite number
   of two-variable functions?
-\item Kolmogorov (1956): Every continuous multi-variable function
+\item \textcolor{citations}{Kolmogorov (1956)}: Every continuous multi-variable function
   can be expressed as the composition of a finite number of
   three-variable functions
-\item Arnold (1957): Only two-variable functions are really needed
-\item Kolmogorov (1957): Actually, the only two-variable function
+\item \textcolor{citations}{Arnold (1957)}: Only two-variable functions are really needed
+\item \textcolor{citations}{Kolmogorov (1957)}: Actually, the only two-variable function
   needed is addition
   \begin{itemize}
   \item A generalization of Hilbert's question,
@@ -94,7 +94,7 @@
 \begin{columns}
 
   \begin{column}{6cm}
-  Sprecher (1972) gives an alternative formulation with a single function
+  \textcolor{citations}{Sprecher (1972)} gives an alternative formulation with a single function
   at the lower layer:
   $$
   f(x_{i=1..n}) = \sum_{q=0}^{2n}\phi_q\left(\sum_{p=1}^n\lambda^{p-1}\psi(x_p+q\cdot\epsilon)+q\right)
@@ -234,9 +234,9 @@ The proof proceeds in three steps:
 \begin{columns}
 
   \begin{column}{7cm}
-  Construct a similar series for the second dimension; Add.
+  Construct a similar series for the second dimension; Then... Add.
   \vskip 1em
-  There are many solutions, but Sprecher's (1972) formulation gives us
+  There are many solutions, but \textcolor{citations}{Sprecher's (1972)} formulation gives us
   something we can visualize:
   \vskip 1em
   A grid of non-overlapping \quotes{platforms}, linearly connected at the
@@ -261,13 +261,12 @@ systems of `platforms', one for each upper function.
 
 \vskip 1em
 
-Step 1 constructed the non-overlapping intervals
+Step 1 constructed the non-overlapping intervals and \textit{also}
 \vspace{0.5em}
 \begin{itemize}
-\item Step 1 also includes the proof that it is always possible to
-  construct these intervals so that every point in $E^2$ is covered
+\item includes the proof that these intervals can always be constructed so that every point in $E^2$ is covered
   by at least one non-gap area of one of these systems of `platforms'
-\item Intuition: Do not align the gaps  
+\item \textit{Intuition:} Do not align the gaps  
 \end{itemize}
 
 \vskip 1em
@@ -279,7 +278,7 @@ So:
   we have created the inner functions that map from \emph{some} values of
   $\psi_1(x_1)+\psi_2(x_2)$ to a platform
 \item Some other values might be over a gap.
-\item But: There is no value that is over a gap in \emph{all} systems of
+\item \textit{But:} There is no value that is over a gap in \emph{all} systems of
   platforms
 \end{itemize}
 
@@ -311,10 +310,12 @@ All the pieces are now in place:
 
 \vskip 0.8em
 
+\begin{center}
 \textcolor{blue!50!black}{%
   Unlike the $\psi$ functions, we have no intuitions whatsoever
   about what the $\phi$ functions look like or how to construct them.
 }
+\end{center}
 
 \end{frame}
 
@@ -378,9 +379,9 @@ The Kolmogorov-Arnold therom tells us that it is possible to find a
 Kudos to Kolmogorov and Arnold for:
 \vspace{0.5em}
 \begin{itemize}
-\item Anticipating modern ML: As long as it fits the data, it doesn't
+\item \textbf{Anticipating modern ML}: As long as it fits the data, it doesn't
   matter if the model captures the actual structures that generate the data \vspace{0.5em}
-\item Anticipating modern ML II: In the executive summary, over-hype
+\item \textbf{Anticipating modern ML II}: In the executive summary, over-hype
   the significance of the result \vspace{0.5em}
 \item Anticipating that multiple arguments can be passed as one complex
   \strong{record} a couple of years before COBOL \vspace{0.5em}
@@ -400,16 +401,16 @@ Kudos to Kolmogorov and Arnold for:
   \item Its essense holds for any function, except that the K-A
     Representation Theorem proves that using the number of arguments
     to define complexity is wrong
-  \item Vitushkin~(2004) gives a compelling argument
+  \item \textcolor{citations}{Vitushkin~(2004)} gives a compelling argument
   \end{itemize}
 \vspace{0.5em}
-\item Hecht-Nielsen (1987) notes the similarity between Sprecher's
+\item \textcolor{citations}{Hecht-Nielsen (1987)} notes the similarity between Sprecher's
   formulation and NNs and speculates that NN training can be used to
-  construct $\phi$, but Girosi \& Poggio (1989) point out that we know
-  $\phi$ are not smooth (Vitushkin \& Henkin, 1967) and cannot be
+  construct $\phi$, but \textcolor{citations}{Girosi \& Poggio (1989)} point out that we know
+  $\phi$ are not smooth \textcolor{citations}{(Vitushkin \& Henkin, 1967)} and cannot be
   learnt.
 \vspace{0.5em}
-\item Schmidt-Hieber (2021) gives a good overview of the ways the KART
+\item \textcolor{citations}{Schmidt-Hieber (2021)} gives a good overview of the ways the KART
   has interacted with the ML community.
   
 \end{itemize}
