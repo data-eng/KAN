@@ -24,7 +24,7 @@
 \begin{frame}{Interpretability: Motivation}
     \begin{itemize}
         \item The main selling point of KANs is their interpretable structure, allowing \textbf{retrieval and examination of the learned activation functions} \vspace{0.5em}
-        \item But, this is only useful when we a priori know the structure of the KAN and know what we expect to see \vspace{0.5em}
+        \item But, this is only useful when we a priori know the structure of the KAN and know what we expect to see (i.e. we are somewhat \textit{domain experts})\vspace{0.5em}
         \item For unknown problems, we stack KAN layers and experiment to find what works \vspace{0.5em}
         \item In this case, only some activation should be meaningful \vspace{0.5em}
         \item Then, how is the visualization considered interpretability? \vspace{0.5em}
@@ -71,29 +71,6 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Beating the COD (?)}
-   \begin{itemize}
-       \item The \textbf{curse of dimensionality (COD)} refers to the exponential growth in volume associated with adding more dimensions to a space \vspace{0.3em}
-       \item UAT tells us that theoretically, a neural network with one hidden layer can approximate any function, but as the dimensionality of the input increases, the number of neurons required grows exponentially \vspace{0.3em}
-       \item This leads to a MLP that is very large and potentially computationally intractable \vspace{0.3em}
-       \item On the other hand, KAN's approximation ability is more dependent on the number of control points in each activation function and less on the data's dimension \vspace{0.3em}
-       \item So, KAN's size will not increase exponentially as the data dimensions increase, but its grid should become more fine-grained \vspace{0.3em}
-       \item \textit{However}, we should note that the current (spline) implementation of KANs is not as optimized as the one for MLPs, so in practice the training times for high-dimensional data are comparable
-   \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Continual Learning}
-   \begin{itemize}
-       \item Catastrophic forgetting is a problem in MLPs \vspace{0.3em}
-       \item When a MLPs is trained on one task and then  shifted to being trained on another, the network will soon forget about how to perform the first task \vspace{0.3em}
-       \item Do you recall the motivation behind using splines to approximate curves instead of using polynomials? \strong{Locality!} \vspace{0.3em}
-       \item Since spline bases are local, a sample will only affect a few nearby spline coefficients, leaving far-away coefficients intact \vspace{0.3em}
-       \item This is desirable assuming faraway regions may have already stored information that we want to preserve \vspace{0.3em}
-       \item By contrast, since MLPs usually use global activations any local change may propagate to regions far away \vspace{0.3em}
-   \end{itemize}
-\end{frame}
-
 \begin{frame}{Kind reminder: KAN is yet another function approximator!}
 	\vspace{-0.8cm}
 	\begin{figure}
@@ -103,3 +80,29 @@
 		\end{center}
 	\end{figure}
 \end{frame}
+
+\begin{frame}{Beating the COD (?)}
+   \begin{itemize}
+       \item The \textbf{curse of dimensionality (COD)} refers to the exponential growth in volume associated with adding more dimensions to a space 
+       \vspace{0.3em}
+       \item UAT: a neural network with one hidden layer can approximate any function, but as the dimensionality of the input increases, the number of neurons needed grows exponentially \vspace{0.3em}
+       \item This leads to a MLP that is very large and potentially computationally intractable \vspace{0.3em}
+       \item On the other hand, KAN's approximation ability is more dependent on the number of control points in each activation function and less on the data's dimension \vspace{0.3em}
+       \item So, KAN's size will not increase exponentially as the data dimensions increase, but its grid should become more fine-grained (... \textit{it switches the complexity}) \vspace{0.3em}
+       \item \textit{However}, we note that the current (spline) implementation of KANs is not as optimized as the one for MLPs, so in practice the training times for high-dimensional data are comparable
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Continual Learning}
+   \begin{itemize}
+   		\item \textbf{To vibe with this slide, wear the hat of the domain expert!} \vspace{0.3em}
+       \item Catastrophic forgetting is a problem in MLPs \vspace{0.3em}
+       \item When a MLPs is trained on one task and then  shifted to being trained on another, the network will soon forget about how to perform the first task \vspace{0.3em}
+       \item Do you recall the motivation behind using splines to approximate curves instead of using polynomials? \strong{Locality!} \vspace{0.3em}
+       \item Since spline bases are local, a sample will only affect a few nearby spline coefficients, leaving far-away coefficients intact \vspace{0.3em}
+       \item By contrast, since MLPs usually use global activations any local change may propagate to regions far away \vspace{0.3em}
+   \end{itemize}
+\end{frame}
+
+
