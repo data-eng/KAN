@@ -20,34 +20,70 @@
 
 \begin{frame}{Architecture: Comparison with MLP}
     \strong{Shallow Formula} \vspace{0.3em}
-    \begin{itemize}
-        \item Though KART ensures exact representation and UAT guarantees approximation, relaxing KART's assumptions positions both as function approximators \vspace{0.5em}
-        \item UAT lacks guarantees on shallow MLP size, and KART provides no method to compute the relative functions \vspace{0.5em}
-        %A set G\subseteq F of functions is called dense in a function space F, if it can approximate any function f\in F to an arbitrary degree of accuracy.
-        %In other words, given any real function f\in F and ε>0, there is a real function g\in G for which |g(x) - f(x)|<ε
-        \item MLP uses fixed activations on nodes and learnable weights on edges, while KAN employs fixed learnable functions on edges and summation on nodes \vspace{0.5em}
-    \end{itemize}
+    
+    \begin{table}[h!]
+    	\centering
+    	\begin{tabular}{cc}
+    		\toprule
+    		\textbf{In KAN...} & \textbf{In MLP...} \\
+    		\midrule
+    		\midrule
+    		Relaxing KART assumptions makes  & UAT guarantees\\
+    		 KAN a function approximator & 	approximation\\
+    	 	\midrule
+    		KART provides no method to compute   & UAT lacks guarantees   \\
+    		the relative functions & on shallow MLP size \\
+    		\bottomrule
+    	\end{tabular}
+    \end{table}
 \end{frame}
 
 \begin{frame}{Architecture: Comparison with MLP}
-    \strong{Deep Formula} \vspace{0.3em}
-    \begin{itemize}
-        \item Shifting to deep formula to avoid UAT's and KART's restrictions \vspace{0.3em}
-        \item KAN shifts non-linearity computation to the composition of $\phi_{\text{s}}$ rather than the
-        weights and activation functions in MLPs \vspace{0.3em}
-        \item KAN defines a \textit{KAN layer} with $n_{\text{in}}$-D inputs and $n_{\text{out}}$-D
-        outputs as a matrix of 1D functions, stacking these layers (note how we are drifting further away from KART)\vspace{0.3em}
-        \item So, the dimensions of the KAN are \textit{not} restricted to $[n, 2n+1, 1]$
-    \end{itemize}
+    \strong{Deep Formula}
+    
+    \begin{columns}
+    	\begin{column}{6.6cm}
+    		\begin{center}
+    			\includegraphics[width=6.5cm]{contents/images/kans_vs_mlps}
+    			\end{center}
+    	\end{column}
+    	
+    	\begin{column}{7cm}
+    	\begin{itemize}
+    		\item Shifting to deep formula to avoid UAT's and KART's restrictions \vspace{0.3em}
+    		\item KAN shifts non-linearity computation to the composition of $\phi_{\text{s}}$ rather than the
+    		weights and activation functions in MLPs \vspace{0.3em}
+    		\item KAN defines a \textit{KAN layer} with $n_{\text{in}}$-D inputs and $n_{\text{out}}$-D
+    		outputs as a matrix of 1D functions, stacking these layers \textit{(...note how we are drifting further away from KART)}\vspace{0.3em}
+    	\end{itemize}
+
+    	\end{column}
+    \end{columns}
+    
+    
 \end{frame}
 
 \begin{frame}{Architecture: Lower Level}
-    \begin{itemize}
-        \item The learnable univariate functions are parametrized as a \textbf{B-spline (basis spline) curves} with learnable coefficients of local B-splines \vspace{0.3em}
-        \item Splines are a transformation that maps control points to a smooth curve, aiming to generally follow the shape of these points \vspace{0.3em}
-        \item Let us present the B-splines in depth \vspace{0.3em}
-    \end{itemize}
+    
+
+\begin{columns}
+	\begin{column}{6cm}
+		\begin{itemize}
+		\item The learnable univariate functions are parametrized as a \textbf{B-spline (basis spline) curves} with learnable coefficients of local B-splines \vspace{0.3em}
+		\item Splines are a transformation that maps control points to a smooth curve, aiming to generally follow the shape of these points \vspace{0.3em}
+		\item Let us present the B-splines in depth \textit{starting from the basics..} \vspace{0.3em}
+	\end{itemize}
+	\end{column}
+	
+	\begin{column}{5cm}
+		\begin{center}
+		\includegraphics[width=5cm]{contents/images/spline_example.png}
+	\end{center}
+	
+	\end{column}
+\end{columns}
 \end{frame}
+
 
 \begin{frame}{B\'ezier curves: Linear}
         To create a path between 2 points $P_0$ and $P_1$, we perform \textbf{linear interpolation} :
@@ -318,25 +354,22 @@
 \begin{frame}{B-splines: Spline interpolation}
     \begin{itemize}
         \item Spline interpolation is used to approximate functions by fitting splines, rather than using a single high-degree polynomial curve \vspace{0.2em}
-        \item This process arises naturally from the formal definition of B-splines: it recursively defines each basis from a knot vector \textcolor{citations}{(Kaihuai, 1998)},
+        \item This process arises naturally from the formal definition of B-splines: it recursively defines each basis from a grid \textcolor{citations}{(Kaihuai, 1998)},
         which indicates the positions where the splines should be connected \vspace{0.2em}
         \item Given \strong{grid G} we define a spline $S$ of $k^{\text{th}}$ order as:
             $$S_{k,G}(x) = \sum_i c_i B_{i,k}(x), \text{ where } $$
           $c_i$ are the \strong{coefficients} and $B_{i,k}(x)$ are the corresponding basis functions \vspace{0.2em}
-          \begin{itemize}
-            \item \textcolor{citations}{Liu et al.} call grid what is usually called a uniform knot vector and coefficients what are usually called control points
-          \end{itemize}
+          
         \item This process maximizes pre-computed elements (\textit{minimizing possible learnable parameters})
     \end{itemize}
 \end{frame}
 
 \begin{frame}{B-splines and KANs}
     \begin{itemize}
-        \item In KANs, each activation function is a $k^{\text{th}}$ order B-spline, with a $G$-valued and uniformly spaced grid  \vspace{0.3em}
-        \item For each activation function what is left to learn is the coefficients of the spline \vspace{0.3em}
-        \item Note that KAN also extends the grid on the edges of the spline, so that each grid point is influenced from the same number of polynomials \vspace{0.3em}
-        \item Thus, for a KAN of width $W$ and depth $D$ the $\#$training parameters is $\mathbb{O}(W^2DG)$ \vspace{0.3em}
-        \item The respective number of parameters for an MLP is $\mathbb{O}(W^2D)$, but KAN promises convergence with smaller widths \vspace{0.3em}
+        \item In KANs, each activation function is a $k^{\text{th}}$ order B-spline, with a $G$-valued and uniformly spaced grid  \vspace{0.5em}
+        \item For each activation function what is left to learn is the coefficients of the spline \vspace{0.5em}
+        \item Thus, for a KAN of width $W$ and depth $D$ the $\#$training parameters is $\mathbb{O}(W^2DG)$ \vspace{0.5em}
+        \item The respective number of parameters for an MLP is $\mathbb{O}(W^2D)$, but KAN promises convergence with smaller widths \vspace{0.5em}
     \end{itemize}
 \end{frame}
 
