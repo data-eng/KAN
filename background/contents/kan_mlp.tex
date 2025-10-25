@@ -2,22 +2,8 @@
 \begin{frame}{Neural Networks are Function Approximators}
 
 \begin{itemize}
-    \item MLPs are inspired by the \strong{Universal Approximation Theorem} \vspace{0.5em}
-    \begin{itemize}
-        \item Leshno et al. (1993):
-        \textit{A standard multilayer FNN can approximate any continuous function to any degree of accuracy iff
-        the network’s activation functions are not polynomial}
-    \end{itemize}
-    \vspace{1em}
-    \item Can we be inspired by \strong{KART}?
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Neural Networks are Function Approximators}
-
-\begin{itemize}
-    \item Can we be inspired by \strong{KART}?
+\item Back to our original motivation:
+  Can we be inspired by \strong{KART} to define a new kind of trainable network?
     \begin{itemize}
         \item KART claims that learning a high-dimensional function reduces to learning a polynomial number of 1D functions then, why \textbf{inspired}? \dots
         \item \dots these 1D functions can be non-smooth (aka \textit{not learnable!})
